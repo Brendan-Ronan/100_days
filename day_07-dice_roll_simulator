@@ -1,0 +1,43 @@
+import random
+
+def roll_dice(sides=6):
+    return random.randint(1, sides)
+
+def roll():
+    print("Welcome to Dice Roll Simulator!")
+    count = 0
+    user_all_total = 0
+    cpu_all_total = 0
+
+    while True:
+        prompt = input("Press Enter to roll (or 'q' to quit): ")
+        if prompt.lower() == 'q':
+            break
+
+        count += 1
+        user_roll_1, user_roll_2 = roll_dice(), roll_dice()
+        user_total = user_roll_1 + user_roll_2
+        user_all_total += user_total
+
+        print(f"You rolled: {user_roll_1} + {user_roll_2} = {user_total}")
+
+        cpu_roll_1, cpu_roll_2 = roll_dice(), roll_dice()
+        cpu_total = cpu_roll_1 + cpu_roll_2
+        cpu_all_total += cpu_total
+
+        print(f"CPU rolled: {cpu_roll_1} + {cpu_roll_2} = {cpu_total}")
+
+        print(f"User total: {user_all_total}\n"
+              f"CPU total: {cpu_all_total}")
+
+    if user_all_total > cpu_all_total:
+        print("You won!")
+    else:
+        print("CPU wins!")
+
+    user_average = int(user_all_total / count) if count > 0 else 0
+    cpu_average = int(cpu_all_total / count) if count > 0 else 0
+    print(f"Your average roll: {user_average}\n"
+          f"CPU average roll: {cpu_average}")
+
+roll()
